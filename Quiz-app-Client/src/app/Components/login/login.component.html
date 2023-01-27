@@ -1,0 +1,83 @@
+<div class="bg-purple-700 flex flex-col w-screen h-screen">
+  <form
+    class="flex justify-center"
+    [formGroup]="loginForm"
+    (ngSubmit)="OnSubmit(Email.value, Password.value)"
+  >
+    <div
+      class="flex flex-col justify-start border-2 mt-20 p-2 border-black rounded-lg text-white w-96 h-96"
+    >
+      <div class="text-xl flex justify-center p-2 m-2">Login</div>
+      <div class="flex flex-col justify-center text-black">
+        <label class="flex justify-start mx-10 p-2 text-white">Email</label>
+        <input
+          class="ml-8 w-72 text-black"
+          [ngClass]="{
+            'border-2 border-red-800 text-black rounded-lg':
+              loginForm.controls['Email'].dirty &&
+              loginForm.hasError('required', 'Email')
+          }"
+          type="email"
+          formControlName="Email"
+          #Email
+          ngModel
+          required
+        />
+        <small
+          *ngIf="
+            loginForm.controls['Email'].dirty &&
+            loginForm.hasError('required', 'Email')
+          "
+          >Email required</small
+        >
+      </div>
+      <div class="flex flex-col justify-center text-black">
+        <label class="flex justify-start mx-10 p-2 text-white">Password</label>
+        <div >
+          <input
+            class="ml-8 w-72 text-black"
+            [ngClass]="{
+              'border-2 border-red-800 text-black rounded-lg':
+                loginForm.controls['Password'].dirty &&
+                loginForm.hasError('required', 'Password')
+            }"
+            [type]="type"
+            formControlName="Password"
+            #Password
+            ngModel
+            required
+          />
+          <mat-icon
+            class="text-black items-self-start cursor-pointer"
+            (click)="hideShowPassword()"
+            >{{ iconShowHide }}</mat-icon
+          >
+          <small
+            *ngIf="
+              loginForm.controls['Password'].dirty &&
+              loginForm.hasError('required', 'Password')
+            "
+            >Password required</small
+          >
+        </div>
+      </div>
+
+      <span class="flex justify-end cursor-pointer text-xs p-2 mr-10"
+        >Forgot Password</span
+      >
+      <button
+        class="flex justify-center cursor-pointe hover:bg-black border-2 border-white mx-36 p-2 mt-8 my-4 rounded-lg"
+        type="submit"
+      >
+        Login
+      </button>
+      <div class="flex justify-center text-xs">
+        Don't have an account ?<u
+          class="pl-1 cursor-pointer text"
+          (click)="GoToRegister()"
+          >Register</u
+        >
+      </div>
+    </div>
+  </form>
+</div>
