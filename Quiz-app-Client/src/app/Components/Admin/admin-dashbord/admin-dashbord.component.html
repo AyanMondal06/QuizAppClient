@@ -1,0 +1,37 @@
+<app-navbar></app-navbar>
+<!-- <ng-container *ngFor="let qn of questionSorted ;let i=index "></ng-container> -->
+<div class="flex-col justify-between p-20 bg-purple-900 max-w-full h-full">
+  <ng-container *ngFor="let qn of crudService.list; let i = index">
+    <div
+      class="flex justify-between w-full bg-blue-600 text-white border-2 border-white"
+    >
+      <div
+        class="p-2 m-2 bg-blue-900 rounded-lg flex-col justify-between pb-2 w-[calc(100%-7rem)]"
+      >
+        <span class="flex-end right-0">{{ i + 1 }}</span>
+        <p>{{ qn.questionInWords }}</p>
+      </div>
+      <div class="flex p-2 m-2 w-28 rounded-lg bg-red-500">
+        <button class="m-1">Edit</button>
+        <button class="m-1">delete</button>
+      </div>
+    </div>
+    <div class="px-10 py-2 text-gray-200">
+      <ul>
+        <li [ngClass]="{ 'bg-green-800 rounded-lg': qn.answer == 0 }">
+          (A) {{ qn.option1 }}
+        </li>
+        <li [ngClass]="{ 'bg-green-800  rounded-lg': qn.answer == 1 }">
+          (B) {{ qn.option2 }}
+        </li>
+        <li [ngClass]="{ 'bg-green-800  rounded-lg': qn.answer == 2 }">
+          (C) {{ qn.option3 }}
+        </li>
+        <li [ngClass]="{ 'bg-green-800 t rounded-lg': qn.answer == 3 }">
+          (D) {{ qn.option4 }}
+        </li>
+      </ul>
+      <div>Ans: ({{ (qn.answer + 10).toString(36).toUpperCase() }})</div>
+    </div>
+  </ng-container>
+</div>

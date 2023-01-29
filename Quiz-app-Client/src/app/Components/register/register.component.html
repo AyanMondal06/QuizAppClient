@@ -1,29 +1,30 @@
-<div class="bg-purple-700 flex flex-col w-screen h-screen">
+<div class="flex flex-col w-screen h-screen">
   <form
     class="flex justify-center"
     [formGroup]="RegisterForm"
     (ngSubmit)="OnSubmit(Email.value,Name.value,Password.value)"
   >
     <div
-      class="flex flex-col justify-start border-2 mt-20 p-2 border-black rounded-lg text-white w-96 h-96"
+      class="flex flex-col justify-start border-2 mt-20 p-2 bg-gray-900 border-white rounded-lg text-white w-96 "
     >
-      <div class="text-xl flex justify-center p-2 m-2">Register</div>
+      <div class="text-2xl flex justify-center p-2 m-2 text-purple-400" >Register</div>
       <div class="flex flex-col justify-center text-black">
-        <label class="flex justify-start mx-10 p-2  text-white">Email</label>
+        <label class="flex justify-start mx-8 p-2  text-purple-400">Email</label>
         <input
-          class="ml-8 w-72 text-black"
+          class="ml-8 w-72 rounded-sm text-black"
           [ngClass]="{
-            'border-2 border-red-800 text-black rounded-lg':
+            'border-2 border-red-600 text-black rounded-lg':
               RegisterForm.controls['Email'].dirty &&
               RegisterForm.hasError('required', 'Email')
           }"
           type="email"
           formControlName="Email"
           #Email
-          ngModel
+          
           required
         />
         <small
+          class="ml-10 w-72 text-red-500"
           *ngIf="
             RegisterForm.controls['Email'].dirty &&
             RegisterForm.hasError('required', 'Email')
@@ -32,9 +33,9 @@
         >
       </div>
       <div class="flex flex-col justify-center  text-black">
-        <label class="flex justify-start mx-10 p-2  text-white">Name</label>
+        <label class="flex justify-start  mx-8 p-2  text-purple-400">Name</label>
         <input
-          class="ml-8 w-72 text-black"
+          class="ml-8 w-72 rounded-sm text-black"
           [ngClass]="{
             'border-2 border-red-800 text-black rounded-lg':
               RegisterForm.controls['Name'].dirty &&
@@ -43,10 +44,11 @@
           type="text"
           formControlName="Name"
           #Name
-          ngModel
+          
           required
         />
         <small
+          class="ml-10 w-72 text-red-500"
           *ngIf="
             RegisterForm.controls['Name'].dirty &&
             RegisterForm.hasError('required', 'Name')
@@ -55,10 +57,10 @@
         >
       </div>
       <div class="flex flex-col justify-center  text-black">
-        <label class="flex justify-start mx-10 p-2 text-white">Password</label>
+        <label class="flex justify-start mx-8 p-2 text-purple-400">Password</label>
         <div >
           <input
-            class="ml-8 w-72 text-black"
+            class="ml-8 w-72 rounded-sm text-black"
             [ngClass]="{
               'border-2 border-red-800 text-black rounded-lg':
                 RegisterForm.controls['Password'].dirty &&
@@ -67,15 +69,12 @@
             [type]="type"
             formControlName="Password"
             #Password
-            ngModel
+           
             required
           />
-          <mat-icon
-            class="text-black items-self-start cursor-pointer"
-            (click)="hideShowPassword()"
-            >{{ iconShowHide }}</mat-icon
-          >
+
           <small
+            class="ml-10 w-72 text-red-500"
             *ngIf="
               RegisterForm.controls['Password'].dirty &&
               RegisterForm.hasError('required', 'Password')
@@ -89,14 +88,14 @@
         >Forgot Password</span
       > -->
       <button
-        class="flex justify-center cursor-pointe hover:bg-black border-2 border-white mx-36 p-2 mt-8 my-4 rounded-lg"
+        class="flex justify-center cursor-pointe hover:bg-purple-800 border-2 border-white mx-36 p-2 mt-8 my-4 rounded-lg"
         type="submit"
       >
         Register
       </button>
-      <div class="flex justify-center text-xs">
+      <div class="flex justify-center text-xs mb-4">
         Don't have an account ?<u
-          class="pl-1 cursor-pointer text"
+          class="pl-1 cursor-pointer text-purple-400"
           (click)="GoToLogin()"
           >Login</u
         >

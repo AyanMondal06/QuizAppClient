@@ -1,7 +1,42 @@
-<p>navbar works!</p>
-<button
-      class="rounded-sm font-semibold flex-self-end items-center w-20 h-10 cursor-pointe border-2 hover:bg-slate-500 bg-black text-sm shadow-lg text-white active:scale-95 px-4 mb-2 transition-all"
-      (click)="logOutButton()"
-    >
-    Logout
-</button>
+<div class="flex justify-between p-2 w-full bg-gray-900 fixed">
+  <span *ngIf="isLoggedIn" class="text-2xl text-purple-400"
+    >Welcome, {{ fullName }}</span
+  >
+  <span *ngIf="!isLoggedIn" class="text-2xl text-purple-400"
+  >QuizApp</span>
+
+  <div
+  
+   class="flex justify-end">
+    <div *ngIf="!isLoggedIn">
+      <button
+        class="rounded-sm font-semibold items-center w-20 h-10 cursor-pointe border-2 hover:bg-purple-800 text-sm shadow-lg text-white active:scale-95 px-5 mx-2 mb-2 transition-all"
+        (click)="logInButton()"
+      >
+        Login
+      </button>
+      <button
+      class="rounded-sm font-semibold items-center w-20 h-10 cursor-pointe border-2 hover:bg-purple-800 text-sm shadow-lg text-white active:scale-95 px-2 mx-2 mb-2 transition-all"
+      (click)="registerButton()"
+    >Register
+    </button>
+    </div>
+
+    <div *ngIf="isLoggedIn">
+      <button
+        *ngIf="role == 'Admin'"
+        class="rounded-sm font-semibold flex-self-end items-center w-20 h-10 cursor-pointe border-2 hover:bg-purple-800 text-sm shadow-lg text-white active:scale-95 px-1 mx-2 mb-2 transition-all"
+        (click)="AdminDashbordButton()"
+      >
+        Questions
+      </button>
+
+      <button
+        class="rounded-sm font-semibold flex-self-end items-center w-20 h-10 cursor-pointe border-2 hover:bg-purple-800 text-sm shadow-lg text-white active:scale-95 px-4 mx-2 mb-2 transition-all"
+        (click)="logOutButton()"
+      >
+        Logout
+      </button>
+    </div>
+  </div>
+</div>

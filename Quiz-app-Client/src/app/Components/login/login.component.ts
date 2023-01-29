@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup ,Validators} from '@angular/forms';
 import { Router } from '@angular/router';
-import { NgToastModule, NgToastService } from 'ng-angular-popup';
-import { CookieService } from 'ngx-cookie-service';
+import { NgToastService } from 'ng-angular-popup';
+import ValidateForm from 'src/app/Helpers/validateForm';
+import { AuthService } from 'src/app/Services/auth.service';
 import { QuizService } from 'src/app/Services/quiz.service';
+import { UserService } from 'src/app/Services/user.service';
 
 
 @Component({
@@ -20,9 +22,11 @@ export class LoginComponent implements OnInit{
 
   constructor(
     private fb: FormBuilder,
-    public quizService: QuizService,
     private route: Router,
-    private toast: NgToastService
+    private toast: NgToastService,
+    public quizService: QuizService,
+    private auth:AuthService,
+    private user:UserService
   ) {}
 
   ngOnInit(): void {
@@ -41,30 +45,28 @@ export class LoginComponent implements OnInit{
   }
   OnSubmit(email: string, password: string) {
     if(this.loginForm.valid){
-      this.quizService.LoginRequest(email, password).subscribe((data: any) => {
-      this.quizService.token = data.data;
-      localStorage.clear();
-      this.quizService.storeToken(data.data); 
-      this.quizService.setQuizCompletedStatus('false');   
-      this.route.navigate(['/quiz']);
-    
-    },
-    );
+      this.auth.LoginRequest(email, password).subscribe({
+        next:(data:any) => {
+        this.auth.token = (data.data);
+        console.log(data)
+        localStorage.clear();
+        this.auth.storeToken(data.data); 
+        const tokenPayload=this.auth.decodedToken();
+        this.user.setFullNameForStore(tokenPayload.name);
+        this.user.setRolesForStore(tokenPayload.role);
+        this.quizService.setQuizCompletedStatus('false');   
+        this.route.navigate(['/dashbord']);
+      },
+        error:(err)=>{
+          //this.toast.error({})
+          //console.log(err);
+        }
+      })
   }else{
-    this.validateAllFormFields(this.loginForm);
+    ValidateForm.validateAllFormFields(this.loginForm);
     this.toast.error({detail:"ERROR!",summary:"Please fill up all details",duration:1000});
     
     //alert('invalid');
   }
-  }
-  private validateAllFormFields(formGrop:FormGroup){
-    Object.keys(formGrop.controls).forEach(field=>{
-      const control =formGrop.get(field);
-      if(control instanceof FormControl){
-        control.markAsDirty({onlySelf:true});
-      }else if(control instanceof FormGroup){
-        this.validateAllFormFields(control)
-      }
-    })
   }
 }

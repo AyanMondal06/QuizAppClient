@@ -23,14 +23,14 @@ export class ResultComponent {
       this.quizService.qns=JSON.parse(this.qnsStoredFromStorage);
 
       this.questionSorted=this.quizService.qns.sort((a, b) => a.questionId - b.questionId);
-      console.log(this.questionSorted)
+      //console.log(this.questionSorted)
 
       this.quizService.getAnswers().subscribe(
         (data:any)=>{
           this.quizService.correctAnswerCount=0;
           this.questionSorted.forEach((e,i)=>{
-            console.log(this.quizService);
-            console.log(e.answer);
+            //console.log(this.quizService);
+            //console.log(e.answer);
             if(e.answer==data[i].correctAns)
             this.quizService.correctAnswerCount++;
             e.correctAns=data[i].correctAns;

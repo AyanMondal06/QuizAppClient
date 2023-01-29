@@ -21,14 +21,14 @@ export class QuizComponent implements OnInit {
     if ((this.qnsStoredFromStorage==null || this.quizService.seconds==null)) {
       this.startCounter();
       this.getRandom5Question();
-      console.log(this.quizService.interval_);
+      //console.log(this.quizService.interval_);
     }
     else {
       
       this.quizService.qns=JSON.parse(this.qnsStoredFromStorage);
       this.quizService.seconds = parseInt(this.secondStoredFromStorage);
       this.startCounter();
-      console.log(this.quizService.qns)
+      //console.log(this.quizService.qns)
       this.quizService.currentQuestion = parseInt(this.currentQuestionStoredFromStorage);
       
     }
@@ -51,7 +51,6 @@ export class QuizComponent implements OnInit {
     localStorage.setItem('secondsRemaining', this.quizService.seconds.toString());
     this.stopCounter();
     localStorage.setItem('QuizCompleteIndicator', 'true');
-    
     localStorage.setItem('currentQuestion', this.quizService.currentQuestion.toString());
     this.router.navigate(['/result']);
   }
@@ -73,7 +72,7 @@ export class QuizComponent implements OnInit {
       });
     setTimeout(() => {
       this.quizService.interval_.unsubscribe();
-    }, 300000);
+    }, this.quizService.quizTime*1000);
   }
   stopCounter() {
     this.quizService.interval_.unsubscribe();
