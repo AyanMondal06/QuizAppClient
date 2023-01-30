@@ -2,14 +2,16 @@
   <form
     class="flex justify-center"
     [formGroup]="RegisterForm"
-    (ngSubmit)="OnSubmit(Email.value,Name.value,Password.value)"
+    (ngSubmit)="OnSubmit(Email.value, Name.value, Password.value)"
   >
     <div
-      class="flex flex-col justify-start border-2  p-2 bg-gray-900 border-white rounded-lg text-white w-96 "
+      class="flex flex-col justify-start border-2 p-2 bg-gray-900 border-white rounded-lg text-white w-96"
     >
-      <div class="text-2xl flex justify-center p-2 m-2 text-purple-400" >Register</div>
+      <div class="text-2xl flex justify-center p-2 m-2 text-purple-400">
+        Register
+      </div>
       <div class="flex flex-col justify-center text-black">
-        <label class="flex justify-start mx-8 p-2  text-purple-400">Email</label>
+        <label class="flex justify-start mx-8 p-2 text-purple-400">Email</label>
         <input
           class="ml-8 w-72 rounded-sm text-black"
           [ngClass]="{
@@ -20,7 +22,6 @@
           type="email"
           formControlName="Email"
           #Email
-          
           required
         />
         <small
@@ -30,18 +31,15 @@
             RegisterForm.hasError('required', 'Email')
           "
           >Email required</small
-          
         >
         <small
-        class="ml-10 w-72 text-red-500"
-        *ngIf="
-          RegisterForm.hasError('pattern', 'Email')
-        "
-        >Please provide a valid email</small
-      >
+          class="ml-10 w-72 text-red-500"
+          *ngIf="RegisterForm.hasError('pattern', 'Email')"
+          >Please provide a valid email</small
+        >
       </div>
-      <div class="flex flex-col justify-center  text-black">
-        <label class="flex justify-start  mx-8 p-2  text-purple-400">Name</label>
+      <div class="flex flex-col justify-center text-black">
+        <label class="flex justify-start mx-8 p-2 text-purple-400">Name</label>
         <input
           class="ml-8 w-72 rounded-sm text-black"
           [ngClass]="{
@@ -52,7 +50,6 @@
           type="text"
           formControlName="Name"
           #Name
-          
           required
         />
         <small
@@ -64,16 +61,16 @@
           >Name required</small
         >
         <small
-        class="ml-10 w-72 text-red-500"
-        *ngIf="
-          RegisterForm.hasError('pattern', 'Name')
-        "
-        >Please provide a valid name</small
-      >
+          class="ml-10 w-72 text-red-500"
+          *ngIf="RegisterForm.hasError('pattern', 'Name')"
+          >Please provide a valid name</small
+        >
       </div>
-      <div class="flex flex-col justify-center  text-black">
-        <label class="flex justify-start mx-8 p-2 text-purple-400">Password</label>
-        <div >
+      <div class="flex flex-col justify-center text-black">
+        <label class="flex justify-start mx-8 p-2 text-purple-400"
+          >Password</label
+        >
+        <div>
           <input
             class="ml-8 w-72 rounded-sm text-black"
             [ngClass]="{
@@ -84,7 +81,6 @@
             [type]="type"
             formControlName="Password"
             #Password
-           
             required
           />
 

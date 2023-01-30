@@ -11,30 +11,30 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashbord.component.css']
 })
 export class DashbordComponent {
-  public fullName:string="";
-  public role:string=""
-constructor(
-  private route:Router,
-  private auth:AuthService,
-  private user: UserService,
-  private quizService:QuizService,
-  ){}
+  public fullName: string = "";
+  public role: string = ""
+  constructor(
+    private route: Router,
+    private auth: AuthService,
+    private user: UserService,
+    private quizService: QuizService,
+  ) { }
 
-ngOnInit(){
-  this.user.getFullNameFromStore()
-  .subscribe(val=>{
-    let fullNameFromToken=this.auth.gefullNameFromToken();
-    this.fullName= val|| fullNameFromToken;
-  })
-  this.user.getRoleFromStore()
-  .subscribe(val=>{
-    let roleFromToken=this.auth.getRoleFromToken();
-    this.role=val || roleFromToken;
-  })
+  ngOnInit() {
+    this.user.getFullNameFromStore()
+      .subscribe(val => {
+        let fullNameFromToken = this.auth.gefullNameFromToken();
+        this.fullName = val || fullNameFromToken;
+      })
+    this.user.getRoleFromStore()
+      .subscribe(val => {
+        let roleFromToken = this.auth.getRoleFromToken();
+        this.role = val || roleFromToken;
+      })
 
-}
-takeQuizButton(){
-  this.quizService.setQuizCompletedStatus('false');   
-  this.route.navigate(['/quiz']);
-}
+  }
+  takeQuizButton() {
+    this.quizService.setQuizCompletedStatus('false');
+    this.route.navigate(['/quiz']);
+  }
 }

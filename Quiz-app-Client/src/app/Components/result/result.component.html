@@ -1,33 +1,40 @@
 <app-navbar></app-navbar>
 
-<div class="flex-col justify-center  p-20  max-w-full h-full" >
-    <div>
-        <button
-        class="flex justify-center cursor-pointe text-white bg-gray-900 hover:bg-purple-800 border-2 border-white m-2 p-2  my-4 "
-        (click)="resetQuizButton()"
-      >
+<div class="flex-col justify-center p-20 max-w-full h-full">
+  <div>
+    <button
+      class="flex justify-center cursor-pointe text-white bg-gray-900 hover:bg-purple-800 border-2 border-white m-2 p-2 my-4"
+      (click)="resetQuizButton()"
+    >
       Reset Quiz
-      </button>
+    </button>
 
-      <div>
-
-      </div>
+    <div></div>
+  </div>
+  <ng-container *ngFor="let qn of questionSorted; let i = index">
+    <div
+      class="p-2 m-2 bg-gray-900 text-white border-2 border-white flex-col justify-between pb-2"
+    >
+      <span class="flex-end right-0">{{ i + 1 }}</span>
+      <p>{{ qn.questionInWords }}</p>
     </div>
-    <ng-container *ngFor="let qn of questionSorted ;let i=index ">
-        <div class="p-2 m-2 bg-gray-900 text-white border-2 border-white  flex-col justify-between pb-2">
-            <span class="flex-end right-0 ">{{i+1}}</span>
-            <p >{{qn.questionInWords}}</p>
-        </div>
-        <div class="px-10 py-2  text-Black">
-            <ng-container *ngFor="let option of qn.options;let j = index">
-                <ul class="pb-1" *ngIf="option != null">
-                    <li [ngClass]="{'bg-green-300 text-black rounded-lg': qn.correctAns==j,'bg-red-500 rounded-lg': qn.answer==j && qn.correctAns!=j}">
-                    <span class="pl-4">{{option}}</span>
-                    <span *ngIf="qn.correctAns==j && qn.answer==qn.correctAns">✔️</span>
-                    <span *ngIf="qn.answer==j && qn.correctAns!=j">❌</span>
-                    </li>
-                </ul>
-            </ng-container>
-        </div>
-    </ng-container>
+    <div class="px-10 py-2 text-Black">
+      <ng-container *ngFor="let option of qn.options; let j = index">
+        <ul class="pb-1" *ngIf="option != null">
+          <li
+            [ngClass]="{
+              'bg-green-300 text-black rounded-lg': qn.correctAns == j,
+              'bg-red-500 rounded-lg': qn.answer == j && qn.correctAns != j
+            }"
+          >
+            <span class="pl-4">{{ option }}</span>
+            <span *ngIf="qn.correctAns == j && qn.answer == qn.correctAns"
+              >✔️</span
+            >
+            <span *ngIf="qn.answer == j && qn.correctAns != j">❌</span>
+          </li>
+        </ul>
+      </ng-container>
+    </div>
+  </ng-container>
 </div>

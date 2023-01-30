@@ -1,13 +1,15 @@
 <div class="flex flex-col justify-center items-center w-screen h-screen">
   <form
-    class="flex justify-center items-center "
+    class="flex justify-center items-center"
     [formGroup]="loginForm"
     (ngSubmit)="OnSubmit(Email.value, Password.value)"
   >
     <div
-      class="flex flex-col justify-start border-2  p-2 bg-gray-900 border-white rounded-lg text-white w-96 "
+      class="flex flex-col justify-start border-2 p-2 bg-gray-900 border-white rounded-lg text-white w-96"
     >
-      <h1 class="text-2xl flex justify-center p-2 m-2 text-purple-400">Login</h1>
+      <h1 class="text-2xl flex justify-center p-2 m-2 text-purple-400">
+        Login
+      </h1>
       <div class="flex flex-col justify-center text-black">
         <label class="flex justify-start mx-8 p-2 text-purple-400">Email</label>
         <input
@@ -31,17 +33,16 @@
           >Email required</small
         >
         <small
-        class="ml-10 w-72 text-red-500"
-        *ngIf="
-          loginForm.hasError('pattern', 'Email')
-        "
-        >Please provide a valid email</small
-      >
-        
+          class="ml-10 w-72 text-red-500"
+          *ngIf="loginForm.hasError('pattern', 'Email')"
+          >Please provide a valid email</small
+        >
       </div>
       <div class="flex flex-col justify-center text-black">
-        <label class="flex justify-start mx-8 p-2 text-purple-400">Password</label>
-        <div >
+        <label class="flex justify-start mx-8 p-2 text-purple-400"
+          >Password</label
+        >
+        <div>
           <input
             class="ml-8 w-72 text-black rounded-sm"
             [ngClass]="{
@@ -54,7 +55,7 @@
             #Password
             required
           />
-    
+
           <small
             class="ml-10 w-72 text-red-500"
             *ngIf="
@@ -75,7 +76,7 @@
       >
         Login
       </button>
-      <div class="flex justify-center text-xs mb-4 ">
+      <div class="flex justify-center text-xs mb-4">
         Don't have an account ?<u
           class="pl-1 cursor-pointer text-purple-400"
           (click)="GoToRegister()"

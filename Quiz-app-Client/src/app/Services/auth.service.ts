@@ -14,56 +14,55 @@ export class AuthService {
   constructor(
     private cookieService: CookieService,
     private quizService: QuizService,
-    private route:Router,
-    private http:HttpClient 
-    ) 
-  {
-    this.userPayload=this.decodedToken();
+    private route: Router,
+    private http: HttpClient
+  ) {
+    this.userPayload = this.decodedToken();
   }
-  
-  readonly rootUrl=environment.rootUrl;
-  token?:string;
-  private userPayload:any;
 
-  RegisterRequest(email:string,name:string,password:string){
-    var body={
-      email:email,
-      name:name,
-      password:password,
+  readonly rootUrl = environment.rootUrl;
+  token?: string;
+  private userPayload: any;
+
+  RegisterRequest(email: string, name: string, password: string) {
+    var body = {
+      email: email,
+      name: name,
+      password: password,
     }
-    return this.http.post(this.rootUrl+ '/Auth/Register',body);
+    return this.http.post(this.rootUrl + '/Auth/Register', body);
   }
-  LoginRequest(email:string,password:string){
-    var body={
-      email:email,
-      password:password
+  LoginRequest(email: string, password: string) {
+    var body = {
+      email: email,
+      password: password
     }
-    return this.http.post(this.rootUrl+ '/Auth/Login',body);
+    return this.http.post(this.rootUrl + '/Auth/Login', body);
   }
-  storeToken(JwtToken:string){
+  storeToken(JwtToken: string) {
     this.cookieService.set('JwtToken', JwtToken);
   }
-  getToken(){
+  getToken() {
     return this.cookieService.get('JwtToken');
   }
-  decodedToken(){
-    const JwtHelper=new JwtHelperService();
-    const token=this.getToken()!;
+  decodedToken() {
+    const JwtHelper = new JwtHelperService();
+    const token = this.getToken()!;
     console.log(JwtHelper.decodeToken(token));
     return JwtHelper.decodeToken(token);
   }
-  gefullNameFromToken(){
-    if(this.userPayload)
-    return this.userPayload.name;
+  gefullNameFromToken() {
+    if (this.userPayload)
+      return this.userPayload.name;
   }
-  getRoleFromToken(){
-    if(this.userPayload)
-    return this.userPayload.role;
+  getRoleFromToken() {
+    if (this.userPayload)
+      return this.userPayload.role;
   }
-  isLoggedIn():boolean{
+  isLoggedIn(): boolean {
     return !!this.cookieService.get('JwtToken');
   }
-  logOut(){
+  logOut() {
     this.cookieService.deleteAll();
     //this.quizService.interval_.unsubscribe();
     this.quizService.resetQuiz();

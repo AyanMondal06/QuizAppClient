@@ -5,21 +5,21 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  private fullName$= new BehaviorSubject<string>("");
-  private role$= new BehaviorSubject<string>("");
+  private fullName$ = new BehaviorSubject<string>("");
+  private role$ = new BehaviorSubject<string>("");
 
   constructor() { }
 
-  public getRoleFromStore(){
+  public getRoleFromStore() {
     return this.role$.asObservable();
   }
-  public setRolesForStore(role:string){
+  public setRolesForStore(role: string) {
     this.role$.next(role);
   }
-  public getFullNameFromStore(){
+  public getFullNameFromStore() {
     return this.fullName$.asObservable();
   }
-  public setFullNameForStore(fullName:string){
+  public setFullNameForStore(fullName: string) {
     this.fullName$.next(fullName);
   }
 }

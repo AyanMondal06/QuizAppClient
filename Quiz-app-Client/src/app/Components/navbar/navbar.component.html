@@ -2,12 +2,9 @@
   <span *ngIf="isLoggedIn" class="text-4xl text-purple-400"
     >Welcome, {{ fullName }}</span
   >
-  <span *ngIf="!isLoggedIn" class="text-4xl text-purple-400"
-  >QuizApp</span>
+  <span *ngIf="!isLoggedIn" class="text-4xl text-purple-400">QuizApp</span>
 
-  <div
-  
-   class="flex justify-end">
+  <div class="flex justify-end">
     <div *ngIf="!isLoggedIn">
       <button
         class="rounded-sm font-semibold items-center w-20 h-10 cursor-pointe border-2 hover:bg-purple-800 text-sm shadow-lg text-white active:scale-95 px-5 mx-2 mb-2 transition-all"
@@ -16,10 +13,11 @@
         Login
       </button>
       <button
-      class="rounded-sm font-semibold items-center w-20 h-10 cursor-pointe border-2 hover:bg-purple-800 text-sm shadow-lg text-white active:scale-95 px-2 mx-2 mb-2 transition-all"
-      (click)="registerButton()"
-    >Register
-    </button>
+        class="rounded-sm font-semibold items-center w-20 h-10 cursor-pointe border-2 hover:bg-purple-800 text-sm shadow-lg text-white active:scale-95 px-2 mx-2 mb-2 transition-all"
+        (click)="registerButton()"
+      >
+        Register
+      </button>
     </div>
 
     <div *ngIf="isLoggedIn">

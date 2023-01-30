@@ -7,14 +7,14 @@ import { NgToastService } from 'ng-angular-popup';
   providedIn: 'root'
 })
 export class ResultGuard implements CanActivate {
-  constructor(private quizService:QuizService, private route:Router,private toast: NgToastService){}
-  canActivate():boolean{
-    if(this.quizService.isQuizCompleatedStatus()){
+  constructor(private quizService: QuizService, private route: Router, private toast: NgToastService) { }
+  canActivate(): boolean {
+    if (this.quizService.isQuizCompleatedStatus()) {
       this.route.navigate(['result']);
       return false;
-    }else{
+    } else {
       return true;
-    
+
     }
   }
 }

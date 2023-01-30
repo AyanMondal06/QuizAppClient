@@ -12,7 +12,7 @@ export class QuizComponent implements OnInit {
 
   secondStoredFromStorage: any = (localStorage.getItem('seconds'));
   currentQuestionStoredFromStorage: any = (localStorage.getItem('currentQuestion'));
-  qnsStoredFromStorage:any=(localStorage.getItem('qns'));
+  qnsStoredFromStorage: any = (localStorage.getItem('qns'));
 
 
 
@@ -20,19 +20,19 @@ export class QuizComponent implements OnInit {
 
   ngOnInit(): void {
 
-    if ((this.qnsStoredFromStorage==null || this.quizService.seconds==null)) {
+    if ((this.qnsStoredFromStorage == null || this.quizService.seconds == null)) {
       this.startCounter();
       this.getRandom5Question();
       //console.log(this.quizService.interval_);
     }
     else {
-      
-      this.quizService.qns=JSON.parse(this.qnsStoredFromStorage);
+
+      this.quizService.qns = JSON.parse(this.qnsStoredFromStorage);
       this.quizService.seconds = parseInt(this.secondStoredFromStorage);
       this.startCounter();
       //console.log(this.quizService.qns)
       this.quizService.currentQuestion = parseInt(this.currentQuestionStoredFromStorage);
-      
+
     }
 
   }
@@ -42,7 +42,7 @@ export class QuizComponent implements OnInit {
       (data: any) => {
         this.quizService.qns = data;
         localStorage.setItem('qns', JSON.stringify(this.quizService.qns));
-       // console.log(this.quizService.qns);
+        // console.log(this.quizService.qns);
       }
     );
   }
@@ -74,7 +74,7 @@ export class QuizComponent implements OnInit {
       });
     setTimeout(() => {
       this.quizService.interval_.unsubscribe();
-    }, this.quizService.quizTime*1000);
+    }, this.quizService.quizTime * 1000);
   }
   stopCounter() {
     this.quizService.interval_.unsubscribe();

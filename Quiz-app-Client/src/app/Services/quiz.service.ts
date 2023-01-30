@@ -11,24 +11,24 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class QuizService {
 
-  readonly quizTime=300;
-  readonly rootUrl=environment.rootUrl;
-  noOfQns:number=5;
-  qns: any[]=[];
-  seconds=this.quizTime;
-  interval_:any;
-  currentQuestion: number=0;
+  readonly quizTime = 300;
+  readonly rootUrl = environment.rootUrl;
+  noOfQns: number = 5;
+  qns: any[] = [];
+  seconds = this.quizTime;
+  interval_: any;
+  currentQuestion: number = 0;
   // isQuizCompleated:boolean=false;
   correctAnswerCount: number = 0;
-  flag:boolean=true;
+  flag: boolean = true;
 
 
-  constructor(private http: HttpClient, 
+  constructor(private http: HttpClient,
     private route: Router,
     private cookieService: CookieService
-    ) {
-   
-   }
+  ) {
+
+  }
 
   get5Questions() {
     return this.http.get(this.rootUrl + '/Question/Fetch5Que');
@@ -36,26 +36,26 @@ export class QuizService {
   getAnswers() {
     var body = this.qns.map(x => x.questionId);
     return this.http.post(this.rootUrl + '/Question/getAnswers', body);
-  } 
-  
-  getQuizCompletedStatus(){
+  }
+
+  getQuizCompletedStatus() {
     return localStorage.getItem('QuizCompleteIndicator');
   }
-  setQuizCompletedStatus(status:string){
-    localStorage.setItem('QuizCompleteIndicator',status);
+  setQuizCompletedStatus(status: string) {
+    localStorage.setItem('QuizCompleteIndicator', status);
   }
-  isQuizCompleatedStatus():boolean{
-    var a=localStorage.getItem('QuizCompleteIndicator');
-     return a==this.flag.toString();
-    
+  isQuizCompleatedStatus(): boolean {
+    var a = localStorage.getItem('QuizCompleteIndicator');
+    return a == this.flag.toString();
+
   }
-  resetQuiz(){
-    this.qns =[];
-    this.seconds=this.quizTime;
-    this.currentQuestion=0;
-    if(this.interval_)
-    this.interval_.unsubscribe();
+  resetQuiz() {
+    this.qns = [];
+    this.seconds = this.quizTime;
+    this.currentQuestion = 0;
+    if (this.interval_)
+      this.interval_.unsubscribe();
     localStorage.clear();
-    localStorage.setItem('QuizCompleteIndicator','false');
+    localStorage.setItem('QuizCompleteIndicator', 'false');
   }
 }

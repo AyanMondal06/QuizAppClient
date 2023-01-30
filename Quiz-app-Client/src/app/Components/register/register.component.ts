@@ -20,18 +20,18 @@ export class RegisterComponent implements OnInit {
   RegisterForm!: FormGroup;
 
   constructor(
-    public quizService: QuizService, 
+    public quizService: QuizService,
     private route: Router,
-    private toast: NgToastService, 
+    private toast: NgToastService,
     private fb: FormBuilder,
-    private auth:AuthService
-    ) { }
+    private auth: AuthService
+  ) { }
 
   ngOnInit(): void {
     this.RegisterForm = this.fb.group({
-      Email: ['',Validators.compose([Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")])],
-      Name: ['',Validators.compose([Validators.required,Validators.pattern("^[A-Za-z][A-Za-z ]*[A-Za-z]$")])],
-      Password:['',Validators.required]
+      Email: ['', Validators.compose([Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")])],
+      Name: ['', Validators.compose([Validators.required, Validators.pattern("^[A-Za-z][A-Za-z ]*[A-Za-z]$")])],
+      Password: ['', Validators.required]
     })
   }
 
@@ -45,16 +45,17 @@ export class RegisterComponent implements OnInit {
   }
 
   OnSubmit(Email: string, Name: string, Password: string) {
-    if(this.RegisterForm.valid){
-    this.auth.RegisterRequest(Email, Name, Password).subscribe(
-      () => {
-        this.toast.success({detail:"SUCCESSFULLY REGISTERD!",duration:2000});
-        this.route.navigate(['/login']);
-      }
-    )}else{
+    if (this.RegisterForm.valid) {
+      this.auth.RegisterRequest(Email, Name, Password).subscribe(
+        () => {
+          this.toast.success({ detail: "SUCCESSFULLY REGISTERD!", duration: 2000 });
+          this.route.navigate(['/login']);
+        }
+      )
+    } else {
       ValidateForm.validateAllFormFields(this.RegisterForm);
-      this.toast.error({detail:"ERROR!",summary:"Please fill up all details",duration:1000});
+      this.toast.error({ detail: "ERROR!", summary: "Please fill up all details", duration: 1000 });
     }
   }
-  
+
 }

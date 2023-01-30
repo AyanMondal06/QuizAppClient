@@ -9,23 +9,23 @@ import { AuthService } from '../Services/auth.service';
   providedIn: 'root'
 })
 export class AdminGuard implements CanActivate {
-  constructor(private user:UserService,private route:Router,private toast:NgToastService,private auth: AuthService){}
+  constructor(private user: UserService, private route: Router, private toast: NgToastService, private auth: AuthService) { }
 
-  public role:string=""
-  
-  canActivate():boolean {
+  public role: string = ""
+
+  canActivate(): boolean {
     this.user.getRoleFromStore()
-  .subscribe(val=>{
-    let roleFromToken=this.auth.getRoleFromToken();
-    this.role=val || roleFromToken;
-  })
-    if(this.role=='Admin'){
+      .subscribe(val => {
+        let roleFromToken = this.auth.getRoleFromToken();
+        this.role = val || roleFromToken;
+      })
+    if (this.role == 'Admin') {
       return true;
-    }else{
-      this.toast.error({detail:"ERROR!",summary:"Please Login As An Admin First!",duration:2000});
+    } else {
+      this.toast.error({ detail: "ERROR!", summary: "Please Login As An Admin First!", duration: 2000 });
       this.route.navigate(['login']);
       return false;
     }
   }
-  
+
 }
