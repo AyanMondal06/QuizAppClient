@@ -19,6 +19,7 @@ export class AddEditPopupComponent {
     private fb: FormBuilder,
     ){}
     addEditForm!:FormGroup;
+    inputButton:string='ADD';
     
 
   ngOnInit():void{
@@ -30,10 +31,11 @@ export class AddEditPopupComponent {
     option2:"",
     option3:"",
     option4:"",
-    answer:0,
+    answer:"",
   });
   if(this.crudService.idForEdit){
     this.populateEditForm()
+    this.inputButton='UPDATE'
     console.log(this.addEditForm.value)
   }
 }
@@ -46,6 +48,7 @@ OnSubmit(){
       (data:any)=>{
       this.addEditForm.reset();
       this.crudService.refreshList();
+      this.crudService.showPopup=false;
       this.toast.info({detail:'SUCCESS!' ,summary:"ADDED",duration:2000})
       })
   }
@@ -57,7 +60,9 @@ OnSubmit(){
         (data:any)=>{
           this.addEditForm.reset();
           this.crudService.refreshList();
-          this.toast.info({detail:'SUCCESS!' ,summary:"ADDED",duration:2000})
+          this.crudService.showPopup=false;
+          this.inputButton='ADD'
+          this.toast.info({detail:'SUCCESS!' ,summary:"UPDATED",duration:2000})
         }
       )
   }

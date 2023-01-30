@@ -1,49 +1,74 @@
-<div >
-    <form
-    class="flex flex-col text-black"
-    [formGroup]="addEditForm"
-    (ngSubmit)="OnSubmit()"
+<div class="fixed flex justify-center w-full h-full items-center">
+  <div>
+    <div
+      class="flex p-2 m-4 bg-gray-900 border-2 border-white rounded-lg justify-center bg-grey-900 h-[42rem] w-[36rem]"
     >
-    <h1>
-      add question header
-    </h1>
-    <input
-    formControlName="questionInWords"
-    placeholder="Question"
-    required
-    />
-    <input
-    formControlName="option1"
-    placeholder="option1"
-    
-    />
-    <input
-    formControlName="option2"
-    placeholder="option2"
-    
-    /> <input
-    formControlName="option3"
-    placeholder="option3"
-    
-    /> <input
-    formControlName="option4"
-    placeholder="option4"
-    
-
-    />
-    <input
-    formControlName="answer"
-    placeholder="answer"
-    
-
-    />
-    <button
-    type="submit">
-    add
-    </button>
-    <button class="mt-2" (click)="closePopup()">
-    close
-    </button>
-
-    </form>
+      <form
+        class="flex flex-col p-2 text-black w-full h-full"
+        [formGroup]="addEditForm"
+        (ngSubmit)="OnSubmit()"
+      >
+        <span class="flex text-xl justify-center m-4 p-4 text-purple-400 border-b-2 border-purple-900"
+          >{{ inputButton }} QUESTION</span
+        ><div class="flex flex-col justify-center items-center ">
+          <label class="flex justify-center text-[20px] py-1 text-purple-400">Question</label>
+          <input
+            class="w-[24rem] p-2 mx-8 justify-center text-black rounded-sm"
+            formControlName="questionInWords"
+            placeholder="Add a question"
+            required
+          />
+        </div>
+      
+        <div class="flex justify-center m-4">
+        <div class="flex flex-col items-center p-2 w-[24rem] h-[22rem] rounded-lg border-2 border-white">
+          <label class="flex justify-center py-1 text-purple-400">Option1</label>
+          <input
+          class="w-[20rem] p-1 mx-8 justify-center text-black rounded-sm"
+            formControlName="option1"
+            placeholder="Add option1"
+          />
+          <label class="flex justify-center py-1 text-purple-400">Option2</label>
+          <input
+          class="w-[20rem] p-1 mx-8 justify-center text-black rounded-sm"
+            formControlName="option2"
+            placeholder="Add option2"
+          />
+          <label class="flex justify-center py-1 text-purple-400">Option3</label>
+          <input
+            class="w-[20rem] p-1 mx-8 justify-center text-black rounded-sm"
+            formControlName="option3"
+            placeholder="Add option3"
+          />
+          <label class="flex justify-center py-1 text-purple-400">Option4</label>
+          <input
+          class="w-[20rem] p-1 mx-8 justify-center text-black rounded-sm"
+            formControlName="option4"
+            placeholder="Add option4"
+          />
+          <label class="flex justify-center py-1 text-purple-400">Answer</label>
+          <input
+          class="w-[20rem] p-1 mx-8 justify-center text-black rounded-sm"
+            formControlName="answer"
+            placeholder="answer"
+          />
+        </div>
+      </div>
+        <div class="flex justify-center p-2">
+          <button
+            class="rounded-sm font-semibold items-center w-20 h-10 cursor-pointe border-2 hover:bg-purple-800 text-sm shadow-lg text-white active:scale-95 px-2 mx-2 mb-2 transition-all"
+            type="submit"
+          >
+            {{ inputButton }}
+          </button>
+          <button
+            class="rounded-sm font-semibold items-center w-20 h-10 cursor-pointe border-2 hover:bg-red-800 text-sm shadow-lg text-white active:scale-95 px-2 mx-2 mb-2 transition-all"
+            (click)="closePopup()"
+          >
+            CLOSE
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
+</div>
