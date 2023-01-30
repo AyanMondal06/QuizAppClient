@@ -38,14 +38,7 @@ export class QuizService {
     return this.http.post(this.rootUrl + '/Question/getAnswers', body);
   } 
 
-  RegisterRequest(email:string,name:string,password:string){
-    var body={
-      email:email,
-      name:name,
-      password:password,
-    }
-    return this.http.post(this.rootUrl+ '/Auth/Register',body);
-  }
+
   
   getQuizCompletedStatus(){
     return localStorage.getItem('QuizCompleteIndicator');

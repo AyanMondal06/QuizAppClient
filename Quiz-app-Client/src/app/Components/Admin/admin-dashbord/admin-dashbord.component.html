@@ -1,33 +1,125 @@
 <app-navbar></app-navbar>
 <!-- <ng-container *ngFor="let qn of questionSorted ;let i=index "></ng-container> -->
-<div class="flex-col justify-between p-20 bg-purple-900 max-w-full h-full">
+<div class="flex-col justify-between p-20  max-w-full h-full">
+  <!-- <button (click)="showHidePopup()">
+    Add question
+  </button>
+  <div *ngIf="addComponentVisible">
+    <form
+    class="flex flex-col text-black"
+    [formGroup]="addForm"
+    (ngSubmit)="addQuestionOnSubmit()"
+    >
+    <h1>
+      add question header
+    </h1>
+    <input
+    formControlName="questionInWords"
+    placeholder="Question"
+    required
+    />
+    <input
+    formControlName="option1"
+    placeholder="option1"
+    />
+    <input
+    formControlName="option2"
+    placeholder="option1"
+    /> <input
+    formControlName="option3"
+    placeholder="option1"
+    /> <input
+    formControlName="option4"
+    placeholder="option1"
+
+    />
+    <input
+    formArrayName="answer"
+    placeholder="answer"
+
+    />
+    <button
+    type="submit">
+    add
+    </button>
+
+    </form>
+  </div>
+  <div *ngIf="editComponentVisible">
+    edit component
+    <form
+    class="flex flex-col text-black"
+    [formGroup]="editForm"
+    (ngSubmit)="editQuestionOnSubmit(idFOrEdit)"
+    >
+    <h1>
+      edit question header
+    </h1>
+    <input
+    formControlName="questionInWords"
+    placeholder="Question"
+    required
+    />
+    <input
+    formControlName="option1"
+    placeholder="option1"
+    />
+    <input
+    formControlName="option2"
+    placeholder="option4"
+    /> <input
+    formControlName="option3"
+    placeholder="option4"
+    /> <input
+    formControlName="option4"
+    placeholder="option4"
+
+    />
+    <input
+    formControlName="answer"
+    placeholder="answer"
+
+    />
+    <button
+    type="submit">
+    add
+    </button>
+
+    </form>
+  </div> -->
+
+
+  <div *ngIf="crudService.showPopup">
+    <app-add-edit-popup></app-add-edit-popup>
+  </div>
+
   <ng-container *ngFor="let qn of crudService.list; let i = index">
     <div
-      class="flex justify-between w-full bg-blue-600 text-white border-2 border-white"
+      class="flex justify-between w-full bg-gray-900 text-white first-letter:border-2 border-white"
     >
       <div
-        class="p-2 m-2 bg-blue-900 rounded-lg flex-col justify-between pb-2 w-[calc(100%-7rem)]"
+        class="p-2 m-2 "
       >
         <span class="flex-end right-0">{{ i + 1 }}</span>
         <p>{{ qn.questionInWords }}</p>
       </div>
-      <div class="flex p-2 m-2 w-28 rounded-lg bg-red-500">
-        <button class="m-1">Edit</button>
-        <button class="m-1">delete</button>
+      <div class="flex p-2 m-2 w-36 rounded-lg bg-blue-500">
+        <button class="p-2 m-1 border-2 rouned-lg hover:bg-purple-800"(click)="callEditQuestion(qn.questionId)">Edit</button>
+        <button class="p-2 m-1 border-2 rouned-lg hover:bg-purple-800"(click)="callDeleteQuestion(qn.questionId)">delete</button>
       </div>
     </div>
-    <div class="px-10 py-2 text-gray-200">
+    <div class="px-10 py-2 text-black">
       <ul>
-        <li [ngClass]="{ 'bg-green-800 rounded-lg': qn.answer == 0 }">
+        <li [ngClass]="{ 'bg-green-400 rounded-lg': qn.answer == 0 }">
           (A) {{ qn.option1 }}
         </li>
-        <li [ngClass]="{ 'bg-green-800  rounded-lg': qn.answer == 1 }">
+        <li [ngClass]="{ 'bg-green-400 rounded-lg': qn.answer == 1 }">
           (B) {{ qn.option2 }}
         </li>
-        <li [ngClass]="{ 'bg-green-800  rounded-lg': qn.answer == 2 }">
+        <li [ngClass]="{ 'bg-green-400  rounded-lg': qn.answer == 2 }">
           (C) {{ qn.option3 }}
         </li>
-        <li [ngClass]="{ 'bg-green-800 t rounded-lg': qn.answer == 3 }">
+        <li [ngClass]="{ 'bg-green-400  rounded-lg': qn.answer == 3 }">
           (D) {{ qn.option4 }}
         </li>
       </ul>

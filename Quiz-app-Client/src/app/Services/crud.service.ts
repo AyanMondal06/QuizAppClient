@@ -10,32 +10,27 @@ import { QuestionModel } from '../Models/Question';
 export class CrudService {
 
   readonly rootUrl=environment.rootUrl;
-  formData: QuestionModel={
-    questionId:0,
-    questionInWords:"",
-    option1:"",
-    option2:"",
-    option3:"",
-    option4:"",
-    answer:0,
-  };
 
+  idForEdit:number=NaN;
+  dataForEdit!:any;
   list:QuestionModel[]=[];
+  showPopup:boolean=false;
  
-  constructor(private http: HttpClient,private route: Router) { }
-  addQuestion(){
-    return this.http.post(this.rootUrl+'/Question/',this.formData);
+  constructor(private http:HttpClient,private route: Router) { }
+  addQuestion(body:any){
+    return this.http.post(this.rootUrl+'/Question/AddQuestion/',body);
   }
   deleteQuestion(id:number){
-    return this.http.delete(this.rootUrl+'/Question/'+id);
+    return this.http.delete(this.rootUrl+'/Question/delete?id='+id);
   }
-  EditQuestion(){
-    return this.http.put(this.rootUrl+'/Question/'+this.formData.questionId,this.formData)
+  EditQuestion(id:number, body:any){
+    return this.http.put(this.rootUrl+'/Question/editQuestion?id='+id,body);
   }
-  // showAQuestion(id:number){
-  //   return this.http.get(this.rootUrl+'/Question/',id)
-  // }
+  showAQuestion(id:number){
+    return this.http.get(this.rootUrl+'/Question/getAQuestion?id='+id);
+  }
   refreshList(){
     return this.http.get(this.rootUrl+'/Question/GetAll');
   }
 }
+//http://localhost:5293/api/Question/getAQuestion?id=6

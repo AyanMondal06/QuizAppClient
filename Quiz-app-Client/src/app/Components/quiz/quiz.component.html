@@ -4,7 +4,7 @@
     class="flex flex-wrap justify-center text-white justify-self-center pt-20"
     *ngIf="quizService.qns"
   >
-    <div class="pt-8 w-96 m-2 bg-purple-600 rounded-lg border-2 border-white h-74">
+    <div class="pt-8 w-96 bg-blue-500 m-2 rounded-lg border-2 border-white h-74">
       <p class="font-bold text-2xl px-2 py-1">Question:</p>
       <p class="font-bold text-xl white p-2">
         {{ quizService.qns[quizService.currentQuestion]?.questionInWords }}
@@ -26,7 +26,9 @@
           <li
             class="border-2 border-white bg-gray-900 rounded-lg my-2 p-2 cursor-pointer hover:bg-gray-800"
             *ngIf="option != null"
+            
             (click)="answer(i)"
+            [ngClass]="{'bg-purple-800 text-white rounded-lg': quizService.qns[quizService.currentQuestion].answer==i}"
           >
             {{ option }}
           </li>

@@ -13,14 +13,12 @@ import { QuizService } from './Services/quiz.service';
 import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { CookieService } from 'ngx-cookie-service';
-import { MatIconModule } from '@angular/material/icon'
 import { NgToastModule } from 'ng-angular-popup';
 import { JwtTokenInterceptor } from './Interceptors/jwt-token.interceptor';
 import { AdminDashbordComponent } from './Components/Admin/admin-dashbord/admin-dashbord.component';
-import { AddQuesComponent } from './Components/Admin/add-ques/add-ques.component';
-import { EditQuesComponent } from './Components/Admin/edit-ques/edit-ques.component';
 import { DashbordComponent } from './Components/dashbord/dashbord.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddEditPopupComponent } from './Components/Admin/add-edit-popup/add-edit-popup.component';
 
 
 @NgModule({
@@ -32,9 +30,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LoginComponent,
     RegisterComponent,
     AdminDashbordComponent,
-    AddQuesComponent,
-    EditQuesComponent,
     DashbordComponent,
+    AddEditPopupComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +39,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatIconModule,
     NgToastModule,
     BrowserAnimationsModule
   ],

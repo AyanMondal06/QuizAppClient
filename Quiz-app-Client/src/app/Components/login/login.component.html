@@ -1,11 +1,11 @@
-<div class="flex flex-col w-screen h-screen">
+<div class="flex flex-col justify-center items-center w-screen h-screen">
   <form
-    class="flex justify-center"
+    class="flex justify-center items-center "
     [formGroup]="loginForm"
     (ngSubmit)="OnSubmit(Email.value, Password.value)"
   >
     <div
-      class="flex flex-col justify-start border-2 mt-20 p-2 bg-gray-900 border-white rounded-lg text-white w-96 "
+      class="flex flex-col justify-start border-2  p-2 bg-gray-900 border-white rounded-lg text-white w-96 "
     >
       <h1 class="text-2xl flex justify-center p-2 m-2 text-purple-400">Login</h1>
       <div class="flex flex-col justify-center text-black">

@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import ValidateForm from 'src/app/Helpers/validateForm';
+import { AuthService } from 'src/app/Services/auth.service';
 import { QuizService } from 'src/app/Services/quiz.service';
 
 @Component({
@@ -18,7 +19,13 @@ export class RegisterComponent implements OnInit {
   iconShowHide: string = 'visibility';
   RegisterForm!: FormGroup;
 
-  constructor(public quizService: QuizService, private route: Router,private toast: NgToastService, private fb: FormBuilder) { }
+  constructor(
+    public quizService: QuizService, 
+    private route: Router,
+    private toast: NgToastService, 
+    private fb: FormBuilder,
+    private auth:AuthService
+    ) { }
 
   ngOnInit(): void {
     this.RegisterForm = this.fb.group({
@@ -39,8 +46,9 @@ export class RegisterComponent implements OnInit {
 
   OnSubmit(Email: string, Name: string, Password: string) {
     if(this.RegisterForm.valid){
-    this.quizService.RegisterRequest(Email, Name, Password).subscribe(
+    this.auth.RegisterRequest(Email, Name, Password).subscribe(
       () => {
+        this.toast.success({detail:"SUCCESSFULLY REGISTERD!",duration:2000});
         this.route.navigate(['/login']);
       }
     )}else{

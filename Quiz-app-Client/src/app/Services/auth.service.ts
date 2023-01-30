@@ -25,6 +25,14 @@ export class AuthService {
   token?:string;
   private userPayload:any;
 
+  RegisterRequest(email:string,name:string,password:string){
+    var body={
+      email:email,
+      name:name,
+      password:password,
+    }
+    return this.http.post(this.rootUrl+ '/Auth/Register',body);
+  }
   LoginRequest(email:string,password:string){
     var body={
       email:email,
