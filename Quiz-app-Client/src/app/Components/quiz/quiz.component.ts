@@ -14,6 +14,8 @@ export class QuizComponent implements OnInit {
   currentQuestionStoredFromStorage: any = (localStorage.getItem('currentQuestion'));
   qnsStoredFromStorage:any=(localStorage.getItem('qns'));
 
+
+
   constructor(private router: Router, public quizService: QuizService) { }
 
   ngOnInit(): void {

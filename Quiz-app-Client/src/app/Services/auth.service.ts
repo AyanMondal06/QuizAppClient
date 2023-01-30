@@ -66,8 +66,8 @@ export class AuthService {
   logOut(){
     this.cookieService.deleteAll();
     //this.quizService.interval_.unsubscribe();
-    localStorage.clear();
     this.quizService.resetQuiz();
+    localStorage.clear();
     this.route.navigate(['']);
   }
 }

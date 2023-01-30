@@ -4,7 +4,12 @@
     class="flex flex-wrap justify-center text-white justify-self-center pt-20"
     *ngIf="quizService.qns"
   >
-    <div class="pt-8 w-96 bg-blue-500 m-2 rounded-lg border-2 border-white h-74">
+  <div
+  class="flex">
+  
+  </div>
+    <div class="text-xl w-96 bg-blue-500 m-2 rounded-lg border-2 border-white h-74">
+      <span class="flex justify-start p-2 border-b-2 border-white">Question {{this.quizService.currentQuestion+1}} of 5</span>
       <p class="font-bold text-2xl px-2 py-1">Question:</p>
       <p class="font-bold text-xl white p-2">
         {{ quizService.qns[quizService.currentQuestion]?.questionInWords }}
@@ -59,8 +64,8 @@
     >
       Submit
     </button>
-    <button class="bg-slate-600 bg-purple rounded-lg w-20" (click)="clrStorage()">
+    <!-- <button class="bg-slate-600 bg-purple rounded-lg w-20" (click)="clrStorage()">
       clear
-    </button>
+    </button> -->
   </div>
 </div>

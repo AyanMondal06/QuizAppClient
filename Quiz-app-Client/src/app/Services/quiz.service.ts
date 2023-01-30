@@ -11,7 +11,7 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class QuizService {
 
-  readonly quizTime=4400;
+  readonly quizTime=300;
   readonly rootUrl=environment.rootUrl;
   noOfQns:number=5;
   qns: any[]=[];
@@ -37,8 +37,6 @@ export class QuizService {
     var body = this.qns.map(x => x.questionId);
     return this.http.post(this.rootUrl + '/Question/getAnswers', body);
   } 
-
-
   
   getQuizCompletedStatus(){
     return localStorage.getItem('QuizCompleteIndicator');
@@ -57,5 +55,7 @@ export class QuizService {
     this.currentQuestion=0;
     if(this.interval_)
     this.interval_.unsubscribe();
+    localStorage.clear();
+    localStorage.setItem('QuizCompleteIndicator','false');
   }
 }

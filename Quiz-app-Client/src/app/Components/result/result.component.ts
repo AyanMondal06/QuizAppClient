@@ -41,4 +41,8 @@ export class ResultComponent {
       this.router.navigate(['/quiz']);
 
   }
+  resetQuizButton(){
+    this.quizService.resetQuiz();
+    this.router.navigate(['']);
+  }
 }

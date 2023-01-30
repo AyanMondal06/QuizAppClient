@@ -30,7 +30,15 @@
             RegisterForm.hasError('required', 'Email')
           "
           >Email required</small
+          
         >
+        <small
+        class="ml-10 w-72 text-red-500"
+        *ngIf="
+          RegisterForm.hasError('pattern', 'Email')
+        "
+        >Please provide a valid email</small
+      >
       </div>
       <div class="flex flex-col justify-center  text-black">
         <label class="flex justify-start  mx-8 p-2  text-purple-400">Name</label>
@@ -55,6 +63,13 @@
           "
           >Name required</small
         >
+        <small
+        class="ml-10 w-72 text-red-500"
+        *ngIf="
+          RegisterForm.hasError('pattern', 'Name')
+        "
+        >Please provide a valid name</small
+      >
       </div>
       <div class="flex flex-col justify-center  text-black">
         <label class="flex justify-start mx-8 p-2 text-purple-400">Password</label>
