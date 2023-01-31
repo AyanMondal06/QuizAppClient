@@ -22,15 +22,15 @@
         <span class="flex-end right-0">{{ i + 1 }}</span>
         <p>{{ qn.questionInWords }}</p>
       </div>
-      <div class="flex p-2 m-2 w-36 rounded-lg bg-blue-500">
+      <div class="flex p-2 m-2 w-36 bg-blue-500">
         <button
-          class="p-2 m-1 border-2 rouned-lg hover:bg-purple-800"
+          class="p-2 m-1 border-2  hover:bg-purple-800"
           (click)="callEditQuestion(qn.questionId)"
         >
           Edit
         </button>
         <button
-          class="p-2 m-1 border-2 rouned-lg hover:bg-purple-800"
+          class="p-2 m-1 border-2  hover:bg-red-800"
           (click)="callDeleteQuestion(qn.questionId)"
         >
           delete

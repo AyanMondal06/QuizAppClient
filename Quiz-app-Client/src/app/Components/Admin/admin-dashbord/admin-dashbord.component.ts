@@ -40,6 +40,7 @@ export class AdminDashbordComponent {
   callDeleteQuestion(id: number) {
     console.log(id);
     this.crudService.deleteQuestion(id).subscribe();
+    this.toast.success({detail:'Success',summary:"DELETED",duration:2000})
   }
 
 }
