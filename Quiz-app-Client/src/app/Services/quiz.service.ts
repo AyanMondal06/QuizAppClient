@@ -13,7 +13,7 @@ export class QuizService {
 
   readonly quizTime = 300;
   readonly rootUrl = environment.rootUrl;
-  noOfQns: number = 5;
+  noOfQns: number = 10;
   qns: any[] = [];
   seconds = this.quizTime;
   interval_: any;

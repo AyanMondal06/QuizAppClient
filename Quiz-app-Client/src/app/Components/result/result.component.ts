@@ -31,11 +31,13 @@ export class ResultComponent {
           this.questionSorted.forEach((e, i) => {
             //console.log(this.quizService);
             //console.log(e.answer);
-            if (e.answer == data[i].correctAns)
-              this.quizService.correctAnswerCount++;
+            if (e.answer == data[i].correctAns){
+              ++this.quizService.correctAnswerCount;
+            }
             e.correctAns = data[i].correctAns;
           });
         });
+       
     }
     else
       this.router.navigate(['/quiz']);

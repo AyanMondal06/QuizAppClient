@@ -8,7 +8,16 @@
     >
       Reset Quiz
     </button>
-
+    <div class="p-2 m-2 text-2xl bg-gray-900 text-white border-2 border-white flex-col justify-between pb-2">
+      <span>Score :  {{this.quizService.correctAnswerCount}} / {{this.quizService.noOfQns}}</span>
+    </div>
+    <div
+    class="p-2 m-2 bg-gray-900 text-white border-2 border-white flex-col justify-between pb-2">
+    
+    <span class="flex">Correct answer is highlighted with <span class="flex items-center mt-1 mx-2 w-10 h-4 bg-blue-300 rounded-lg"></span></span>
+    <span class="flex">Correct Choice is marked with ✔️</span>
+    <span class="flex">Wrong Choice is marked with ❌ </span>
+  </div>
     <div></div>
   </div>
   <ng-container *ngFor="let qn of questionSorted; let i = index">
@@ -23,7 +32,7 @@
         <ul class="pb-1" *ngIf="option != null">
           <li
             [ngClass]="{
-              'bg-green-300 text-black rounded-lg': qn.correctAns == j,
+              'bg-blue-300 text-black rounded-lg': qn.correctAns == j,
               'bg-red-500 rounded-lg': qn.answer == j && qn.correctAns != j
             }"
           >

@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<div class="flex-col p-20 justify-center max-w-screen h-screen">
+<div class="flex-col p-20 justify-center w-full h-full">
   <div
     class="flex flex-wrap justify-center text-white justify-self-center pt-20"
     *ngIf="quizService.qns"
@@ -9,7 +9,7 @@
       class="text-xl w-96 bg-blue-500 m-2 rounded-lg border-2 border-white h-74"
     >
       <span class="flex justify-start p-2 border-b-2 border-white"
-        >Question {{ this.quizService.currentQuestion + 1 }} of 5</span
+        >Question {{ this.quizService.currentQuestion + 1 }} of {{quizService.noOfQns}}</span
       >
       <p class="font-bold text-2xl px-2 py-1">Question:</p>
       <p class="font-bold text-xl white p-2">
